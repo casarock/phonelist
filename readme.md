@@ -1,2 +1,2 @@
 # Simple mobile enhanced phonelist
-Phonelist. Jquery Mobile. Just nothing else.
+Phonelist. Jquery Mobile. Just nothing else. 
