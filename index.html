@@ -6,17 +6,38 @@
 	<link rel="stylesheet" href="css/jquery.mobile.min.css" />
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="js/jquery.mobile.min.js"></script>
+	<script type="text/javascript">
+        $(document).ready(function() {
+            $.getJSON("mock/phoneMock.json", function(data) {
+                fillContactList(data);
+            });
+            
+            function fillContactList(contacts) {
+                var contactList = $('#contactList');
+                var i = contacts.length;
+                while (i--) {
+                    var li = document.createElement('li');
+                    li.innerHTML = contacts[i].vorname + ' ' + contacts[i].nachname;
+                    contactList.append(li);                    
+                }
+                contactList.listview('refresh');
+            }
+
+        })
+	</script>
 </head> 
 <body> 
 
 <div data-role="page">
 
 	<div data-role="header">
-		<h1>My Title</h1>
+		<h1>phonelist</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">	
-		<p>Hello world</p>		
+        <ul id="contactList" data-role="listview">
+            <!-- populated via fillContactList() -->
+        </ul>
 	</div><!-- /content -->
 
 </div><!-- /page -->
