@@ -16,9 +16,11 @@
                 var contactList = $('#contactList');
                 var i = contacts.length;
                 while (i--) {
-                    var li = document.createElement('li');
-                    li.innerHTML = contacts[i].vorname + ' ' + contacts[i].nachname;
-                    contactList.append(li);                    
+                    var listItem = document.createElement('li');
+                    var markup = '<li><h2>' + contacts[i].vorname + ' ' + contacts[i].nachname + 
+                                 '</h2><p><a href="tel:' + contacts[i].nummer + '">' + contacts[i].nummer + '</a></p></li>';
+                    listItem.innerHTML = markup;
+                    contactList.append(listItem);                    
                 }
                 contactList.listview('refresh');
             }
