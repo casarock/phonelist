@@ -18,8 +18,9 @@
                 var i = contacts.length;
                 while (i--) {
                     var listItem = document.createElement('li');
-                    var markup = '<li><a href="#detail" class="detailLink" data-userid="' + contacts[i].ID + '">' + 
-                                  contacts[i].vorname + ' ' + contacts[i].nachname + '</a></li>';
+                    var markup = '<div class="ui-btn-text"><a href="#detail" class="ui-link-inherit detailLink" data-userid="'+ 
+                                  contacts[i].ID + '">' + 
+                                  '<h2>' + contacts[i].vorname + ' ' + contacts[i].nachname + '</h2></a></div>';
 
                     listItem.innerHTML = markup;
                     contactList.append(listItem);                    
@@ -65,7 +66,7 @@
 </head> 
 <body> 
 
-    <div data-role="page">
+    <div data-role="page" id="start">
 
 	    <div data-role="header">
 		    <h1>phonelist</h1>
@@ -80,6 +81,7 @@
     <div data-role="page" id="detail">
         <div data-role="header">
 	        <h1 id="detailHeader"></h1>
+            <a href="#start" class="ui-btn-left" data-icon="back" data-direction="reverse">Home</a>
         </div><!-- /header -->
 
         <div data-role="content">	
