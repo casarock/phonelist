@@ -13,6 +13,7 @@
             });
             
             function fillContactList(contacts) {
+                
                 var contactList = $('#contactList');
                 var i = contacts.length;
                 while (i--) {
@@ -37,7 +38,7 @@
 	</div><!-- /header -->
 
 	<div data-role="content">	
-        <ul id="contactList" data-role="listview">
+        <ul id="contactList" data-role="listview" data-inset="true" data-filter="true">
             <!-- populated via fillContactList() -->
         </ul>
 	</div><!-- /content -->
