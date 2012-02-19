@@ -3,16 +3,19 @@ function fillContactList(contacts) {
     var contactList = $('#contactList');
     var i = contacts.length;
     while (i--) {
-      var listItem = document.createElement('li');
+        var listItem = document.createElement('li');
+            var para = document.createElement('p');
+                para.innerHTML = 'Durchwahl ' + contacts[i].durchwahl;
 
-      $('listItem').attr('data-icon','arrow-r');
-      var markup = '<div class="ui-btn-text"><a href="#detail" class="ui-link-inherit detailLink" data-userid="'+ 
-                    contacts[i].ID + '">' + 
-                    '<h2>' + contacts[i].vorname + ' ' + contacts[i].nachname + '</h2>' +
-                    '<p>Durchwahl: <strong>' + contacts[i].durchwahl + '</strong></p></a></div>';
+            var link = document.createElement('a');
+                link.setAttribute('href', '#detail');
+                link.setAttribute('class', 'detailLink');
+                link.setAttribute('data-userid', contacts[i].ID);
+                link.innerHTML = contacts[i].vorname + ' ' + contacts[i].nachname;
+                link.appendChild(para);
 
-      listItem.innerHTML = markup;
-      contactList.append(listItem);                    
+            listItem.appendChild(link);
+        contactList.append(listItem);
     }
     contactList.listview('refresh');
 
