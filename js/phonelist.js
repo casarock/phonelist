@@ -51,7 +51,7 @@ function fillContactList(contacts) {
     });
 }
 
-function initPhonlist() {
+function initPhonelist() {
     $.getJSON("mock/phoneMock.json", function(data) {
         fillContactList(data);
     }); 
