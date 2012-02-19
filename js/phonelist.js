@@ -21,36 +21,48 @@ function fillContactList(contacts) {
 
     // detail page
     $('.detailLink').bind('click', function() {
-      var userId        = this.getAttribute('data-userid');
-      var contactDetail = $('#contactDetail');
-      var i = contacts.length;
-      while (i--) {
-          if (contacts[i].ID === userId) {
-              var contact = contacts[i];
-              break;
-          }
-      }
-      
-      $('#detailHeader').html(contact.vorname + ' ' + contact.nachname    );
-      
-      var listItem = document.createElement('li');
-      var markup = '<li>' + 
-                       '<h2>' + contact.vorname + ' ' + contact.nachname + '</h2>' + 
-                       '<p>Abteilung: ' + contact.abteilung + '</p>' +
-                       '<p>Durchwahl: ' + contact.durchwahl + '</p>' + 
-                       '<p>Nummer: <a href="tel:' + contact.nummer + '">' + contact.nummer + '</a></p>' + 
-                       '<p>E-Mail: <a href="mailto:' + contact.mail + '">' + contact.mail + '</a></p>' +
-                       '<p>Handy: <a href="tel:' + contact.handy + '">' + contact.handy + '</a></p>' +
-                       '<p>Skype: <a href="tel:' + contact.skype + '">' + contact.skype + '</a></p>' +
-                   '</li>';
-      listItem.innerHTML = markup;   
-      
-      contactDetail.children().remove();
-      contactDetail.append(listItem);
-      
-      window.setTimeout(function() {
+        var userId        = this.getAttribute('data-userid');
+        var contactDetail = $('#contactDetail');
+            contactDetail.children().remove();
+        var i = contacts.length;
+        while (i--) {
+            if (contacts[i].ID === userId) {
+                var contact = contacts[i];
+                break;
+            }
+        }
+
+        $('#detailHeader').html(contact.vorname + ' ' + contact.nachname);
+
+        var listItem = document.createElement('li');
+            var heading  = document.createElement('h2');
+                heading.innerHTML = contact.vorname + ' ' + contact.nachname;
+            var para1    = document.createElement('p');
+                para1.innerHTML = 'Abteilung: ' + contact.abteilung;
+            var para2    = document.createElement('p');
+                para2.innerHTML = 'Durchwahl: ' + contact.durchwahl;
+            var para3    = document.createElement('p');
+                para3.innerHTML = 'Nummer: ' + contact.nummer;
+            var para4    = document.createElement('p');
+                para4.innerHTML = 'E-Mail: ' + contact.email;
+            var para5    = document.createElement('p');
+                para5.innerHTML = 'Handy: ' + contact.handy;
+            var para6    = document.createElement('p');
+                para6.innerHTML = 'Skype: ' + contact.skype;
+                
+            listItem.appendChild(heading);
+            listItem.appendChild(para1);
+            listItem.appendChild(para2);
+            listItem.appendChild(para3);
+            listItem.appendChild(para4);
+            listItem.appendChild(para5);
+            listItem.appendChild(para6);
+
+            contactDetail.append(listItem);
+
+        window.setTimeout(function() {
           $('#contactDetail').listview('refresh');
-      }, 200);
+        }, 400);
     });
 }
 
