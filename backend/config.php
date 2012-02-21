@@ -1,4 +1,7 @@
 <?php
+if (strstr($_SERVER["PHP_SELF"], "config.php")) {
+    die();
+}
 return array(
     'db' => array(
         'username' => 'dbuser',

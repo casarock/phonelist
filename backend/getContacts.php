@@ -19,4 +19,11 @@ if ($retrieved['hash'] == $dataProvider->getLocalHash()) {
     echo "{'status': 'not changed!'}";
     return;
 }
+
+if ($retrieved['username'] !== $config['user']['username'] && $retrieved['password'] !== $config['user']['password']) {
+    echo "{'status': 'wrong username or password'}";
+    return;
+}
+
+echo $dataProvider->getAllDataAsJSONString();
 ?>
