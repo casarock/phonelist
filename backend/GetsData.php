@@ -7,7 +7,7 @@ class GetsData {
     private $hash = null;
     private $databaseConnection = null;
 
-    public function construct(Database $db) {
+    public function __construct($db) {
         $this->databaseConnection = $db;
         $this->hash = 'HASH';
     }

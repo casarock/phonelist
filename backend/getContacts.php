@@ -13,7 +13,7 @@ $retrieved = array('hash'     => htmlspecialchars($_GET['hash']),
 
 $database = Database::getInstance($config);
 if ($database->isConnected()) {
-    $dataProvider = new GetsData($database);
+    $dataProvider = new GetsData($database->getConnection());
 } else {
     echo "{'status', 'dberror'}";
     return;
