@@ -18,6 +18,10 @@ class Database {
 
     private function __clone() {}
 
+    private function setDb($dbname) {
+        return mysql_select_db($dbname, $this->connection);
+    }
+
     public function getConnection() {
         return $this->connection;
     }
@@ -28,6 +32,18 @@ class Database {
         } else {
             return false;
         }
+    }
+
+    public function getAllFrom($db, $table) {
+        $this->setDb($this->config['db']['name']);
+        $query = 'SELECT * FROM ' . $table;
+        $resultSet = mysql_query($query);
+
+        $result = array();
+        while ($row = mysql_fetch_assoc($resultSet)) {
+            $result[] = $row;
+        }
+        return $result;
     }
 
     public static function getInstance(array $config) {

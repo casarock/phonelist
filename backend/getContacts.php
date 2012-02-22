@@ -13,7 +13,7 @@ $retrieved = array('hash'     => htmlspecialchars($_GET['hash']),
 
 $database = Database::getInstance($config);
 if ($database->isConnected()) {
-    $dataProvider = new GetsData($database->getConnection());
+    $dataProvider = new GetsData($database, $config);
 } else {
     echo "{'status', 'dberror'}";
     return;
@@ -29,5 +29,5 @@ if ($retrieved['username'] !== $config['user']['username'] || $retrieved['passwo
     return;
 }
 
-echo $dataProvider->getAllDataAsJSONString();
+echo $dataProvider->getAllDataAsJSONString($config['db']['table']);
 ?>
