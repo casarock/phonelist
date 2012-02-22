@@ -4,7 +4,7 @@ class Database {
     private $config = NULL;
     private $connection = NULL;
 
-    private function __construct($config) {
+    private function __construct(array $config) {
         $this->config = $config;
         $this->connect();
     }
@@ -27,19 +27,13 @@ class Database {
     }
 
     public function isConnected() {
-        if (is_resource($this->connection)) {
-            return true;
-        } else {
-            return false;
-        }
+        return is_resource($this->connection);
     }
 
     public function getAllFrom($db, $table) {
         $this->setDb($this->config['db']['name']);
-        $query = 'SELECT * FROM ' . $table;
-        $resultSet = mysql_query($query);
+        $resultSet = mysql_query('SELECT * FROM ' . $table);
 
-        $result = array();
         while ($row = mysql_fetch_assoc($resultSet)) {
             $result[] = $row;
         }

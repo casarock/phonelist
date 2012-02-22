@@ -1,24 +1,20 @@
 <?php
 class GetsData {
-    // db connectivity
-    // build json
-    // save hash
-
     private $hash = null;
     private $database = null;
     private $config = null;
 
-    public function __construct(Database $db, $config) {
+    public function __construct(Database $db, array $config) {
         $this->config = $config;
         $this->database = $db;
         $this->hash = 'HASH';
     }
 
     public function getLocalHash() {
+        //@TODO
         return $this->hash;
     }
 
-    //@TODO
     public function getAllDataAsJSONString($table) {
         if (!$this->database->getConnection()) {
             return "{'status': 'error connection to database'}";
