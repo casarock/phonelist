@@ -11,7 +11,7 @@ return array(
     ),
     'user' => array(
         'username' => 'xx',
-        'password' => ''
+        'password' => 'xx'
     )
 );
 ?>

@@ -1,27 +1,31 @@
 <?php
 require_once 'GetsData.php';
+require_once 'Database.php';
 $config = require_once('config.php');
 
-// check hash -> return json: {'status': 'not changed'}
-// check credentials
-// return json {[... contact obj...]}
-$retrieved = array();
 if (!isset($_GET['hash']) || !isset($_GET['username']) || !isset($_GET['password'])) {
+    echo "{'status': 'noparams'}";
     return;
 }
-$retrieved['hash'] = htmlspecialchars($_GET['hash']);
-$retrieved['username'] = htmlspecialchars($_GET['username']);
-$retrieved['password'] = htmlspecialchars($_GET['password']);
+$retrieved = array('hash'     => htmlspecialchars($_GET['hash']),
+                   'username' => htmlspecialchars($_GET['username']),
+                   'password' => htmlspecialchars($_GET['password']));
 
-$dataProvider = new GetsData();
+$database = Database::getInstance($config);
+if ($database->isConnected()) {
+    $dataProvider = new GetsData($database);
+} else {
+    echo "{'status', 'dberror'}";
+    return;
+}
 
 if ($retrieved['hash'] == $dataProvider->getLocalHash()) {
-    echo "{'status': 'not changed!'}";
+    echo "{'status': 'unchanged'}";
     return;
 }
 
-if ($retrieved['username'] !== $config['user']['username'] && $retrieved['password'] !== $config['user']['password']) {
-    echo "{'status': 'wrong username or password'}";
+if ($retrieved['username'] !== $config['user']['username'] || $retrieved['password'] !== $config['user']['password']) {
+    echo "{'status': 'wrongcredentials'}";
     return;
 }
 

@@ -5,13 +5,20 @@ class GetsData {
     // save hash
 
     private $hash = null;
+    private $databaseConnection = null;
 
-    public function construct() {
+    public function construct(Database $db) {
+        $this->databaseConnection = $db;
         $this->hash = 'HASH';
     }
 
     public function getLocalHash() {
         return $this->hash;
+    }
+
+    //@TODO
+    public function getAllDataAsJSONString() {
+        return "{'status': 'not implemented'}";
     }
 }
 ?>
