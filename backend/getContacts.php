@@ -15,19 +15,20 @@ $database = Database::getInstance($config);
 if ($database->isConnected()) {
     $dataProvider = new GetsData($database, $config);
 } else {
-    echo "{'status', 'dberror'}";
+    header("HTTP/1.0 304 Not Modified");
     return;
 }
 
 if ($retrieved['hash'] == $dataProvider->getLocalHash()) {
-    echo "{'status': 'unchanged'}";
+    header("HTTP/1.0 304 Not Modified");
     return;
 }
 
 if ($retrieved['username'] !== $config['user']['username'] || $retrieved['password'] !== $config['user']['password']) {
+    header("HTTP/1.0 200 OK");
     echo "{'status': 'wrongcredentials'}";
     return;
 }
-
+header("HTTP/1.0 200 OK");
 echo $dataProvider->getAllDataAsJSONString($config['db']['table']);
 ?>
