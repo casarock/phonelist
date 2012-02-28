@@ -6,4 +6,4 @@ echo "//js/phonelist.js" >> js/all.js
 cat js/phonelist.js >> js/all.js
 echo "" >> js/all.js
 
-cat js/all.js
+java -jar tools/yuicompressor-2.4.7.jar js/all.js -o js/all.min.js
