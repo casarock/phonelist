@@ -16,11 +16,19 @@ span {
     border-radius: 4px;
 }
 span span {
-    padding: 0 10px;
+    display: block;
+    padding: 0;
     border: 0;
     margin: 0;
     width: auto;
     font-weight: bold;
+}
+
+span a {
+    text-decoration: none;
+    margin-left: 10px;
+    color: inherit;
+    display: block;
 }
 
 #contacts {
@@ -31,6 +39,6 @@ span span {
     display: none;
 }
 
-#contacts span:hover .detail {
+#contacts a:hover .detail {
     display: block;
 }
