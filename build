@@ -1,4 +1,8 @@
-echo "// ###### js/tweettemplate.js ######" > js/all.js
+echo "// ###### js/ready.js ######" > js/all.js
+cat js/ready.js >> js/all.js
+echo "" >> js/all.js
+
+echo "// ###### js/tweettemplate.js ######" >> js/all.js
 cat js/tweettemplate.js >> js/all.js
 echo "" >> js/all.js
 
