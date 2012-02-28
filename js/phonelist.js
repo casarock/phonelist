@@ -26,7 +26,7 @@ PhoneList.view.fillContactList = function() {
     if ('object' == typeof contEl) {
         var i = PhoneList.data.contacts.length;
         while (i--) {
-            contEl.innerHTML += doTemplate('<span style="display: block;">{vorname} {nachname}</span>', PhoneList.data.contacts[i]);
+            contEl.innerHTML += doTemplate('<span><span>{vorname} {nachname}</span></span>', PhoneList.data.contacts[i]);
         }
     }
 }
