@@ -1,8 +1,12 @@
-echo "//js/tweettemplate.js" > js/all.js
+echo "// ###### js/tweettemplate.js ######" > js/all.js
 cat js/tweettemplate.js >> js/all.js
 echo "" >> js/all.js
 
-echo "//js/phonelist.js" >> js/all.js
+echo "// ###### js/microajax.min.js ######" >> js/all.js
+cat js/microajax.min.js >> js/all.js
+echo "" >> js/all.js
+
+echo "// ###### js/phonelist.js ######" >> js/all.js
 cat js/phonelist.js >> js/all.js
 echo "" >> js/all.js
 
