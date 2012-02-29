@@ -1,22 +1,21 @@
 echo "Aggregating javascripts..."
+  cat js/ready.js > js/all.js
+  echo "" >> js/all.js
 
-cat js/ready.js > js/all.js
-echo "" >> js/all.js
+  cat js/tweettemplate.js >> js/all.js
+  echo "" >> js/all.js
 
-cat js/tweettemplate.js >> js/all.js
-echo "" >> js/all.js
+  cat js/microajax.min.js >> js/all.js
+  echo "" >> js/all.js
 
-cat js/microajax.min.js >> js/all.js
-echo "" >> js/all.js
+  cat js/phonelist.js >> js/all.js
+  echo "" >> js/all.js
 
-cat js/phonelist.js >> js/all.js
-echo "" >> js/all.js
-
-cat js/phonelistEvents.js >> js/all.js
-echo "" >> js/all.js
+  cat js/phonelistEvents.js >> js/all.js
+  echo "" >> js/all.js
 
 echo "Compressing javascripts..."
-java -jar tools/yuicompressor-2.4.7.jar js/all.js -o js/all.min.js
+  java -jar tools/yuicompressor-2.4.7.jar js/all.js -o js/all.min.js
 
 echo "Compressing css..."
-java -jar tools/yuicompressor-2.4.7.jar css/general.css -o css/general.min.css
+  java -jar tools/yuicompressor-2.4.7.jar css/general.css -o css/general.min.css
