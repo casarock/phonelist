@@ -121,7 +121,7 @@ PhoneList.data.retrieveContacts = function() {
     }
 };
 
-// Loads data from localStorage or via XHR - calls ready() once data is ready
+// Starts the app by retrieving the contacts
 domready(function () {
     if (window.navigator.standalone == false) {
         window.scrollTo(0, 1);
