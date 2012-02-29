@@ -1,4 +1,3 @@
-// ###### js/ready.js ######
 /*
   * domready (c) Dustin Diaz 2012 - License MIT
   */
@@ -53,7 +52,6 @@
       loaded ? fn() : fns.push(fn)
     })
 })
-// ###### js/tweettemplate.js ######
 // Big thanks to Thomas Fuchs for this one.
 // http://mir.aculo.us/2011/03/09/little-helpers-a-tweet-sized-javascript-templating-engine/
 function doTemplate(s,d){
@@ -62,9 +60,7 @@ function doTemplate(s,d){
     }
     return s;
 }
-// ###### js/microajax.min.js ######
 function microAjax(B,A){this.bindFunction=function(E,D){return function(){return E.apply(D,[D])}};this.stateChange=function(D){if(this.request.readyState==4){this.callbackFunction(this.request.responseText)}};this.getRequest=function(){if(window.ActiveXObject){return new ActiveXObject("Microsoft.XMLHTTP")}else{if(window.XMLHttpRequest){return new XMLHttpRequest()}}return false};this.postBody=(arguments[2]||"");this.callbackFunction=A;this.url=B;this.request=this.getRequest();if(this.request){var C=this.request;C.onreadystatechange=this.bindFunction(this.stateChange,this);if(this.postBody!==""){C.open("POST",B,true);C.setRequestHeader("X-Requested-With","XMLHttpRequest");C.setRequestHeader("Content-type","application/x-www-form-urlencoded");C.setRequestHeader("Connection","close")}else{C.open("GET",B,true)}C.send(this.postBody)}};
-// ###### js/phonelist.js ######
 // check dependencies
 if ('function' != typeof microAjax) {
     console.log('missing microAjax');
@@ -86,15 +82,26 @@ PhoneList.view.fillContactList = function() {
     if ('object' == typeof contEl) {
         var i = PhoneList.data.contacts.length;
         while (i--) {
-            contEl.innerHTML += doTemplate('<span><a href="#">{vorname} {nachname}' +
-                                           '<span class="detail">{abteilung}</span>' +
-                                           '<span class="detail">{durchwahl}</span>' +
-                                           '<span class="detail">{nummer}</span>' +
-                                           '<span class="detail">{handy}</span>' +
-                                           '<span class="detail">{skype}</span></a>' +
+            contEl.innerHTML += doTemplate('<span class="openCloseTrigger">' +
+                                               '<span href="#">{vorname} {nachname}' +
+                                                    '<div class="detail">' +
+                                                        '<span>Abteilung: {abteilung}</span>' +
+                                                        '<span>Nummer: ' +
+                                                            '<a href="tel:+4961312120{durchwahl}">+4961312120{durchwahl}</a>' +
+                                                        '</span>' +
+                                                        '<span>Nummer: ' +
+                                                            '<a href="tel:{nummer}">{nummer}</a>' +
+                                                        '</span>' +
+                                                        '<span>Handy: ' +
+                                                            '<a href="tel:{handy}">{handy}</a>' +
+                                                        '</span>' +
+                                                        '<span>Skype: {skype}</span>' +
+                                                    '</div>' +
+                                               '</span>' +
                                            '</span>', PhoneList.data.contacts[i]);
         }
     }
+    PhoneList.events.bind();
 }
 
 PhoneList.data.retrieveContacts = function() {
@@ -118,3 +125,20 @@ PhoneList.data.retrieveContacts = function() {
 domready(function () {
     PhoneList.data.retrieveContacts();
 });
+PhoneList.events = {};
+
+PhoneList.events.bind = function() {
+    var openCloseTrigger = document.getElementsByClassName('openCloseTrigger');
+    var i = openCloseTrigger.length;
+
+    while (i--) {
+        openCloseTrigger[i].addEventListener('click', function() {
+            if (this.getElementsByTagName('div')[0].style.display !== 'block') {
+                this.getElementsByTagName('div')[0].style.display = 'block';
+            } else {
+                this.getElementsByTagName('div')[0].style.display = 'none';
+            }
+        })
+    }
+}
+
