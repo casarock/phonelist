@@ -123,6 +123,9 @@ PhoneList.data.retrieveContacts = function() {
 
 // Loads data from localStorage or via XHR - calls ready() once data is ready
 domready(function () {
+    if (window.navigator.standalone == false) {
+        window.scrollTo(0, 1);
+    }
     PhoneList.data.retrieveContacts();
 });
 PhoneList.events = {};
