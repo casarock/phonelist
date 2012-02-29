@@ -31,19 +31,11 @@ span {
 span span {
     background: none;
     display: block;
-    padding: 0;
+    padding: 0 10px;
     border: 0;
     margin: 0;
     width: auto;
     font-weight: bold;
-}
-
-span a {
-    background: none;
-    text-decoration: none;
-    margin-left: 10px;
-    color: inherit;
-    display: block;
 }
 
 span.detail {
