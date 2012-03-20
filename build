@@ -19,3 +19,13 @@ echo "Compressing javascripts..."
 
 echo "Compressing css..."
   java -jar tools/yuicompressor-2.4.7.jar css/general.css -o css/general.min.css
+
+echo "New Cache-Manifest Version: "
+  ts=`date +%s`
+  intro="CACHE MANIFEST \n# V$ts\n"
+  files="css/general.min.css\njs/all.min.js"
+  manifest="$intro$files"
+  
+  echo -e $manifest > phonelist.appcache
+
+echo "Done."
